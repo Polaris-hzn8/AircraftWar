@@ -5,12 +5,12 @@
     > Created Time: 2023-08-18 20:31:22
 ************************************************************************/
 
-#include "mainscene.h"
+#include "gamescene.h"
 #include <QApplication>
 
 int main(int argc, char *argv[]) {
-    QApplication a(argc, argv);
-    MainScene w;
-    w.show();
-    return a.exec();
+    QApplication app(argc, argv);
+    GameScene gamescene;
+    gamescene.show();
+    return app.exec();
 }

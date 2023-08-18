@@ -17,12 +17,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     gamescene.cpp \
+    heroplane.cpp \
     main.cpp \
     map.cpp
 
 HEADERS += \
     config.h \
     gamescene.h \
+    heroplane.h \
     map.h
 
 # Default rules for deployment.

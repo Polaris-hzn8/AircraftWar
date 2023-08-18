@@ -40,6 +40,8 @@ void GameScene::startGame() {
 void GameScene::freshPosition() {
     //更新地图坐标
     _map.updatePosition();
+    //更新飞机的坐标
+    //_heroplane.setPosition();
 }
 
 void GameScene::paintEvent(QPaintEvent *e) {
@@ -47,6 +49,8 @@ void GameScene::paintEvent(QPaintEvent *e) {
     //绘制游戏地图
     painter.drawPixmap(0, _map._pic1_posY, _map._pic1);
     painter.drawPixmap(0, _map._pic2_posY, _map._pic2);
+    //绘制玩家飞机
+    painter.drawPixmap(_heroplane._x, _heroplane._y, _heroplane._pic);
 }
 
 GameScene::~GameScene() {

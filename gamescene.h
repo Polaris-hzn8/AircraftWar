@@ -10,6 +10,7 @@
 
 #include <QTimer>
 #include <QWidget>
+#include "heroplane.h"
 #include "map.h"
 
 class GameScene : public QWidget {
@@ -27,6 +28,7 @@ public:
     void paintEvent(QPaintEvent *e);
 private:
     Map _map;//当前游戏场景下的地图
+    HeroPlane _heroplane;
     QTimer _timer;
 };
 

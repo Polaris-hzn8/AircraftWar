@@ -14,7 +14,7 @@
 #define GAME_WINDOWS_TITLE "AircraftWar v1.0"
 #define GAME_ICON ":/res/app.ico"
 
-/***************** 游戏地图配置  ******************/
+/***************** 游戏地图资源配置  ******************/
 #define MAP1_PATH ":/res/img/img_bg_level_1.jpg"
 #define MAP2_PATH ":/res/img/img_bg_level_2.jpg"
 #define MAP3_PATH ":/res/img/img_bg_level_3.jpg"
@@ -22,6 +22,10 @@
 #define MAP5_PATH ":/res/img/img_bg_level_5.jpg"
 #define MAP_SCROLL_SPEED 2 //2px per second
 #define GAME_FRESH_SPEED 10 //10ms
+
+/***************** 英雄飞机资源配置  ******************/
+#define HERO_PLANE1_PATH ":/res/img/hero.png"
+#define HERO_PLANE2_PATH ":/res/img/hero2.png"
 
 
 #endif // CONFIG_H

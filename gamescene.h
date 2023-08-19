@@ -15,6 +15,7 @@
 #include "heroplane.h"
 #include "bullet.h"
 #include "map.h"
+#include "explosion.h"
 
 class GameScene : public QWidget {
     Q_OBJECT
@@ -44,6 +45,7 @@ private:
 private:
     int _timestamp = 0;//敌对飞机出场时间间隔
     EnemyPlane _enemys[ENEMY_MAXNUM];//敌对飞机数组
+    Explosion _explotions[EXPLOSION_MAXNUM];//爆炸对象数组
 };
 
 #endif // MAINSCENE_H

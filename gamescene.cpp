@@ -65,6 +65,11 @@ void GameScene::freshPosition() {
             _enemys[i].updatePosition();
         }
     }
+    //计算爆炸动画播放的是数组中的哪图片
+    for (int i = 0; i < EXPLOSION_MAXNUM; ++i) {
+        if (!_explotions[i]._isPlaying) continue;
+        _explotions[i].updateExplosionIMG();
+    }
 }
 
 void GameScene::paintEvent(QPaintEvent *e) {
@@ -91,6 +96,17 @@ void GameScene::paintEvent(QPaintEvent *e) {
             int x = enemey._x;
             int y = enemey._y;
             QPixmap pic = enemey._pic;
+            painter.drawPixmap(x, y, pic);
+        }
+    }
+    //绘制爆炸图片帧
+    for (int i = 0; i < EXPLOSION_MAXNUM; ++i) {
+        if (_explotions[i]._isPlaying) {
+            auto explosion = _explotions[i];
+            int x = explosion._x;
+            int y = explosion._y;
+            int idx = explosion._idx;
+            QPixmap pic = explosion._picArray[idx];
             painter.drawPixmap(x, y, pic);
         }
     }
@@ -140,11 +156,17 @@ void GameScene::collisionDetect() {
         for (int j = 0; j < BULLET_MAXNUM; ++j) {
             if (!_heroplane._bullets[j]._isUsed) continue;
             //3.开始碰撞检测操作
-            QRect enemy = _enemys[i]._rect;
-            QRect bullet = _heroplane._bullets[j]._rect;
-            if (enemy.intersects(bullet)) {
+            if (_enemys[i]._rect.intersects(_heroplane._bullets[j]._rect)) {
                 _enemys[i]._isUsed = false;
                 _heroplane._bullets[j]._isUsed = false;
+                //4.发生碰撞还要引发爆炸动画播放
+                for (int k = 0; k < EXPLOSION_MAXNUM; ++k) {
+                    if (_explotions[k]._isPlaying) continue;
+                    _explotions[k]._isPlaying = true;
+                    _explotions[k]._x = _enemys[i]._x;
+                    _explotions[k]._y = _enemys[i]._y;
+                    break;//退出爆炸循环
+                }
             }
         }
     }

@@ -87,6 +87,11 @@
 #define EXPLOSION_IMG_INTERVAL 20
 #define EXPLOSION_IMG_MAXINDEX 7
 #define EXPLOSION_MAXNUM 20
+#define EXPLOSION_SOUND ":/res/music/bomb.wav"
+
+
+/***************** 7.背景音乐资源配置  ******************/
+#define LEVEL1_BGM_SOUND ":/res/music/bg.wav"
 
 
 #endif // CONFIG_H

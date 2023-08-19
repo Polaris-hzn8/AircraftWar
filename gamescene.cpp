@@ -10,6 +10,7 @@
 #include <QPainter>
 #include <QDebug>
 #include <ctime>
+#include <QSound>
 #include "config.h"
 #include "gamescene.h"
 
@@ -31,6 +32,8 @@ void GameScene::initScene() {
 }
 
 void GameScene::startGame() {
+    //启动背景音乐
+    QSound::play(LEVEL1_BGM_SOUND);
     //利用定时器刷新屏幕
     _timer.start();
     //游戏每一帧需要执行的操作
@@ -160,6 +163,7 @@ void GameScene::collisionDetect() {
                 _enemys[i]._isUsed = false;
                 _heroplane._bullets[j]._isUsed = false;
                 //4.发生碰撞还要引发爆炸动画播放
+                QSound::play(EXPLOSION_SOUND);
                 for (int k = 0; k < EXPLOSION_MAXNUM; ++k) {
                     if (_explotions[k]._isPlaying) continue;
                     _explotions[k]._isPlaying = true;

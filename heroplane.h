@@ -10,16 +10,21 @@
 
 #include <QPixmap>
 #include <QRect>
+#include "bullet.h"
+#include "config.h"
 
 class HeroPlane {
 public:
     HeroPlane();
     void shoot();
-    void setPosition(int x, int y);
+    void updatePosition(int x, int y);
     int _x;
     int _y;
     QRect _rect;
     QPixmap _pic;
+public:
+    Bullet _bullets[BULLET_MAXNUM];//子弹数组
+    int _timestamp = 0;
 };
 
 #endif // HEROPLANE_H

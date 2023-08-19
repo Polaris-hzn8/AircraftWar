@@ -10,7 +10,9 @@
 
 #include <QTimer>
 #include <QWidget>
+#include "config.h"
 #include "heroplane.h"
+#include "bullet.h"
 #include "map.h"
 
 class GameScene : public QWidget {
@@ -26,6 +28,8 @@ public:
     void freshPosition();
     //将元素绘制到屏幕中(QT中的绘图事件 名称不可修改)
     void paintEvent(QPaintEvent *e);
+    //重写鼠标移动事件(名称不可修改)
+    void mouseMoveEvent(QMouseEvent *e);
 private:
     Map _map;//当前游戏场景下的地图
     HeroPlane _heroplane;

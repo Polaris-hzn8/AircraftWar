@@ -9,6 +9,7 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QDebug>
+#include <ctime>
 #include "config.h"
 #include "gamescene.h"
 
@@ -25,10 +26,12 @@ void GameScene::initScene() {
     setWindowIcon(QIcon(GAME_ICON));
     //利用定时器 设置游戏刷新时间间隔
     _timer.setInterval(GAME_FRESH_SPEED);
+    //随机数种子 1970.1.1 00:00:00 - 至今的秒数
+    srand((unsigned int)time(NULL));
 }
 
 void GameScene::startGame() {
-    //利用定时器刷新屏显
+    //利用定时器刷新屏幕
     _timer.start();
     //游戏每一帧需要执行的操作
     connect(&_timer, &QTimer::timeout, this, [=](){
@@ -52,6 +55,14 @@ void GameScene::freshPosition() {
             _heroplane._bullets[i].updatePosition();
         }
     }
+    //敌对飞机出场（发射敌机）
+    enemyToScene();
+    //计算敌对飞机坐标 更新所有非空闲状态的敌对飞机的坐标（由系统更新）
+    for (int i = 0; i < ENEMY_MAXNUM; ++i) {
+        if (_enemys[i]._isUsed) {
+            _enemys[i].updatePosition();
+        }
+    }
 }
 
 void GameScene::paintEvent(QPaintEvent *e) {
@@ -71,6 +82,16 @@ void GameScene::paintEvent(QPaintEvent *e) {
             painter.drawPixmap(x, y, pic);
         }
     }
+    //绘制敌对飞机
+    for (int i = 0; i < ENEMY_MAXNUM; ++i) {
+        if (_enemys[i]._isUsed) {
+            auto enemey = _enemys[i];
+            int x = enemey._x;
+            int y = enemey._y;
+            QPixmap pic = enemey._pic;
+            painter.drawPixmap(x, y, pic);
+        }
+    }
 }
 
 void GameScene::mouseMoveEvent(QMouseEvent *e) {
@@ -87,6 +108,25 @@ void GameScene::mouseMoveEvent(QMouseEvent *e) {
     if (y >= GAME_WINDOWS_HEIGHT - _heroplane._rect.height()) y = GAME_WINDOWS_HEIGHT - _heroplane._rect.height();
     //3.设置鼠标位置
     _heroplane.updatePosition(x, y);
+}
+
+void GameScene::enemyToScene() {
+    _timestamp++;
+    if (_timestamp < ENEMY_INTERVAL3) return;
+    else {
+        _timestamp = 0;
+        for (int i = 0; i < ENEMY_MAXNUM; ++i) {
+            auto ptr = &_enemys[i];
+            if (!ptr->_isUsed) {
+                ptr->_isUsed = true;
+                //敌对飞机出场位置设计
+                //y设置为固定值从屏幕外侧出发 x可设置为随机数值范围为0 ~ WINDOWS_WIDTH-_rect.width();
+                ptr->_x = rand() % (GAME_WINDOWS_WIDTH - ptr->_rect.width());
+                ptr->_y = -ptr->_rect.height();
+                break;
+            }
+        }
+    }
 }
 
 GameScene::~GameScene() {

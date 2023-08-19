@@ -33,10 +33,11 @@ void HeroPlane::shoot() {
     else {
         _timestamp = 0;
         for (int i = 0; i < BULLET_MAXNUM; ++i) {
-            if (!_bullets[i]._isUsed) {
-                _bullets[i]._isUsed = true;//修改使用标识
-                _bullets[i]._x = _x + _rect.width()/2 - 10;//设置子弹发射坐标
-                _bullets[i]._y = _y - 25;
+            auto ptr = &_bullets[i];
+            if (!ptr->_isUsed) {
+                ptr->_isUsed = true;//修改使用标识
+                ptr->_x = _x + _rect.width()/2 - 10;//设置子弹发射坐标
+                ptr->_y = _y - 25;
                 break;
             }
         }

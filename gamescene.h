@@ -11,6 +11,7 @@
 #include <QTimer>
 #include <QWidget>
 #include "config.h"
+#include "enemyplane.h"
 #include "heroplane.h"
 #include "bullet.h"
 #include "map.h"
@@ -30,10 +31,16 @@ public:
     void paintEvent(QPaintEvent *e);
     //重写鼠标移动事件(名称不可修改)
     void mouseMoveEvent(QMouseEvent *e);
+public:
+    //敌对飞机出场
+    void enemyToScene();
 private:
     Map _map;//当前游戏场景下的地图
     HeroPlane _heroplane;
     QTimer _timer;
+private:
+    int _timestamp = 0;//敌对飞机出场时间间隔
+    EnemyPlane _enemys[ENEMY_MAXNUM];//敌对飞机数组
 };
 
 #endif // MAINSCENE_H

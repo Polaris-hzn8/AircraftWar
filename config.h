@@ -20,7 +20,7 @@
 #define MAP3_PATH ":/res/img/img_bg_level_3.jpg"
 #define MAP4_PATH ":/res/img/img_bg_level_4.jpg"
 #define MAP5_PATH ":/res/img/img_bg_level_5.jpg"
-#define MAP_SCROLL_SPEED 2 //2px per second
+#define MAP_SCROLL_SPEED 1 //2px per second
 #define GAME_FRESH_SPEED 10 //游戏中绘制每一帧的时间间隔ms（定时绘制）
 
 /***************** 英雄飞机资源配置  ******************/
@@ -50,6 +50,36 @@
 #define BULLET_MAXNUM 30
 
 
+/***************** 敌对飞机资源配置  ******************/
+//敌机样式
+#define ENEMY_PLANE1_PATH ":/res/img/img-plane_1.png"
+#define ENEMY_PLANE2_PATH ":/res/img/img-plane_2.png"
+#define ENEMY_PLANE3_PATH ":/res/img/img-plane_3.png"
+#define ENEMY_PLANE4_PATH ":/res/img/img-plane_4.png"
+#define ENEMY_PLANE5_PATH ":/res/img/img-plane_5.png"
+#define ENEMY_PLANE6_PATH ":/res/img/img-plane_6.png"
+#define ENEMY_PLANE7_PATH ":/res/img/img-plane_7.png"
+
+//敌机速度
+#define ENEMY_SPEED1 1
+#define ENEMY_SPEED2 2
+#define ENEMY_SPEED3 3
+
+//敌敌子弹发射间隔时间（发射频率）
+#define ENEMY_BULLET_INTERVAL1 10 //每10帧发射一次
+#define ENEMY_BULLET_INTERVAL2 20 //每20帧发射一次
+#define ENEMY_BULLET_INTERVAL3 30 //每30帧发射一次
+
+//敌机子弹最大数量
+#define ENEMY_BULLET_MAXNUM 30
+
+//敌机出场的间隔时间（出场频率）
+#define ENEMY_INTERVAL1 50
+#define ENEMY_INTERVAL2 60
+#define ENEMY_INTERVAL3 70
+
+//敌机的最大总数
+#define ENEMY_MAXNUM 20
 
 
 #endif // CONFIG_H

@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     bullet.cpp \
+    enemyplane.cpp \
     gamescene.cpp \
     heroplane.cpp \
     main.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
 HEADERS += \
     bullet.h \
     config.h \
+    enemyplane.h \
     gamescene.h \
     heroplane.h \
     map.h

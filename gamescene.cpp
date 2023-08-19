@@ -39,6 +39,8 @@ void GameScene::startGame() {
         freshPosition();
         //将所有元素重新绘制到屏幕上
         update();
+        //元素间的碰撞检测
+        collisionDetect();
     });
 }
 
@@ -124,6 +126,25 @@ void GameScene::enemyToScene() {
                 ptr->_x = rand() % (GAME_WINDOWS_WIDTH - ptr->_rect.width());
                 ptr->_y = -ptr->_rect.height();
                 break;
+            }
+        }
+    }
+}
+
+//碰撞检测
+void GameScene::collisionDetect() {
+    //1.遍历所有的非空闲的敌对飞机
+    for (int i = 0; i < ENEMY_MAXNUM; ++i) {
+        if (!_enemys[i]._isUsed) continue;
+        //2.遍历所有的空闲的飞机
+        for (int j = 0; j < BULLET_MAXNUM; ++j) {
+            if (!_heroplane._bullets[j]._isUsed) continue;
+            //3.开始碰撞检测操作
+            QRect enemy = _enemys[i]._rect;
+            QRect bullet = _heroplane._bullets[j]._rect;
+            if (enemy.intersects(bullet)) {
+                _enemys[i]._isUsed = false;
+                _heroplane._bullets[j]._isUsed = false;
             }
         }
     }

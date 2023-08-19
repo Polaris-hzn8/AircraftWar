@@ -34,6 +34,9 @@ public:
 public:
     //敌对飞机出场
     void enemyToScene();
+public:
+    //敌对飞机碰撞检测
+    void collisionDetect();
 private:
     Map _map;//当前游戏场景下的地图
     HeroPlane _heroplane;
